@@ -1,32 +1,32 @@
 #!/usr/bin/env python3
 
-#from gpiozero import LED
+from gpiozero import LED
 from time import sleep
 import datetime
 import csv
 
 start = ["06", "50"]
 
-#solenoid = LED(5)
-#yelLED = LED(27)
+solenoid = LED(5)
+yelLED = LED(27)
 time_run = 10
 
 sleep (60)
 
-# for x in range(4):
-#     yelLED.on()
-#     sleep (.3)
-#     yelLED.off()
-#     sleep(.3)
+for x in range(4):
+    yelLED.on()
+    sleep (.3)
+    yelLED.off()
+    sleep(.3)
 
 while True:
     now = datetime.datetime.now()
     if now.strftime("%H") == start[0] and now.strftime("%M") == start[1] and now.strftime("%S") == "00":
-        # yelLED.on()
-        # solenoid.on()
+        yelLED.on()
+        solenoid.on()
         sleep(60*time_run)
-        # yelLED.off()
-        # solenoid.off()
+        yelLED.off()
+        solenoid.off()
         with open('water_log.csv', 'a', newline='') as csvfile:
             logwriter = csv.writer(csvfile, delimiter=',',
                                    quotechar='|', quoting=csv.QUOTE_MINIMAL)
